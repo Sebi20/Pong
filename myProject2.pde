@@ -1,11 +1,13 @@
 //If the player hits the ball with the paddle, they will earn a point
 //However, if the ball misses the paddle then the players loses a point
 
-int paddleYpos = 560;
-int score = 0;
-int lives = 10;
+int paddleYpos = 560; // The position of the paddle in the y-direction
+
+int score = 0;       // Keeps track of the player's score
+int lives = 10;      // Keeps track of the player's life
 int rad = 30;        // Width of the ball
 float xpos, ypos;    // Starting position of ball    
+                     
 
 float xSpeedOfBall = 2.8;  // Speed of the ball
 float ySpeedOfBall = 2.2;  // Speed of the ball
@@ -42,10 +44,16 @@ void draw(){
     yDirectionOfBall *= -1;
   }
   
+  //If tghe ball hits the bottom, decrement a life. 
+  if(ypos > height - 10){
+    //yDirectionOfBall *= -1;
+    lives--;
+  }
+  
   //Checks if the ball hits the paddle
   if(xpos >= mouseX && xpos <= mouseX+100 && ypos > 550 && ypos < 555){
     yDirectionOfBall *= -1;
-    score++;
+    score++;      //The score increments when the hits the paddle
     
     //The ball gets faster when it hits the paddle
     ySpeedOfBall += 0.5;
@@ -62,15 +70,3 @@ void draw(){
   // Draw the shape
   ellipse(xpos, ypos, rad, rad);
 }
-
-
-
-//void keyPressed() {
-//  if (key == CODED) {
-//    if (keyCode == LEFT) {
-//      paddleXpos = paddleXpos - 25;
-//    } else if (keyCode == RIGHT) {
-//      paddleXpos = paddleXpos + 25;
-//    } 
-//  }
-//}
